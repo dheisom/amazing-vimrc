@@ -3,7 +3,7 @@
 Um pequeno conjunto de plugins e configurações para tornar o NeoVim mais
 bonito e rápido na hora de desenvolver seus códigos usando o terminal.
 
-![Screenshoot](screenshoot.png)
+![Captura de tela](screenshot.png)
 
 Informações da captura de tela:
 

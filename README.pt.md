@@ -12,7 +12,7 @@ Informações da captura de tela:
     - DE: xfce
 
 
-# Instalação/Atualização
+## Instalação/Atualização
 
 Para instalar ou atualizar sua configuração é preciso rodar o comando a seguir
 no seu terminal e aguardar o termino:
@@ -21,8 +21,9 @@ no seu terminal e aguardar o termino:
 curl -Ls https://github.com/dheisom/amazing-vimrc/raw/master/install.sh | bash -
 ```
 
+Para atualizar os plugins é necessário rodar o comando :PlugUpdate no NeoVim
 
-# Plugins do pacote
+## Plugins do pacote
 
  - [Vim-NumberToggle](https://github.com/jeffkreeftmeijer/vim-numbertoggle)
  - [EditorConfig](https://github.com/editorconfig/editorconfig-vim)

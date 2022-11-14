@@ -1,74 +1,52 @@
 #!/usr/bin/env bash
 
-echo "Usuário atual: `whoami`"
-echo "ATENÇÃO: você precisa ser root para executar este script, a menos que você esteja usando termux"
+# Installation script of amazing-vimrc(Dheisom's version)
 
-if [ "`whoami`" == "root" ];then
-    read -p "Instalar programas extras para melhorar ainda mais o NeoVim?[s/n] " extra
-else
-    extra="n"
-fi
-if [ "$extra" == "s" -o "$extra" == "S" ];then
-    programs="nodejs curl neovim git"
-    extra="s"
-else
-    programs="curl neovim git"
-    extra="n"
-fi
+declare -A DEPENDENCIES=()
+DEPENDENCIES['curl']="curl"
+DEPENDENCIES['git']="git"
+DEPENDENCIES['nvim']="neovim"
 
-echo "instalando os programas..."
-if [ "`whoami`" != "root" ];then
-    echo "Pulando instalações por falta de root..."
-elif [ -e "/bin/apt-get" ];then
-    apt-get update
-    apt-get install $programs -y
-    if [ "$extra" == "s" ];then
-        echo "Instalando o npm..."
-        apt-get install npm -y
+function log() {
+    local type="$1"
+    local message="$2"
+    echo "[$type] $message"
+}
+
+function check_dependencie() {
+    local dep="$1"
+    for p in ${PATH//:/ }; do
+        if [ -e "$p/$dep" ]; then
+            return 0;
+        fi
+    done
+    return 1
+}
+
+function missing_dependencie() {
+    local cmd="$1"
+    local package="${DEPENDENCIES[$cmd]}"
+    log "ERROR" "Command ${cmd} not found! Install ${package} package to continue."
+    exit 1
+}
+
+log "INFO" "amazing-vimrc setup initialized."
+log "INFO" "Checking dependencies..."
+for d in ${!DEPENDENCIES[@]}; do
+    check_dependencie ${d} || missing_dependencie ${d}
+done
+
+if [ -d "${HOME}/.config/nvim" ]; then
+    log "INFO" "Updating installation..."
+    cd ~/.config/nvim
+    git pull
+else
+    log "INFO" "Installing for user $(whoami)..."
+    git clone --depth=1 https://github.com/dheisom/amazing-vimrc ~/.config/nvim
+    if [ $? != 0 ]; then
+        log "ERROR" "Failed to clone GitHub repository, try again if you want this."
+        exit 2
+    else
+        log "INFO" "Installed with success!"
     fi
-elif [ -e "/bin/dnf" ];then
-    dnf check-update
-    dnf install $programs
-elif [ -e "/bin/apk" ];then
-    apk update
-    apk add $programs -y
-    if [ "$extra" == "s" ];then
-        apk add npm -y
-    fi
-elif [ -e "/bin/pacman" ];then
-    pacman -Sy
-    pacman -S $programs
-elif [ -e "/data/data/com.termux/files/usr/bin/apt-get" ];then
-    apt-get update
-    apt-get install $programs -y
 fi
-
-if [ -d "$HOME/.config/nvim" ];then
-    rm -rf ~/.config/nvim
-else
-    mkdir -p ~/.config/nvim
-fi
-
-git clone https://github.com/foxx3r/amazing-vimrc ~/.config/nvim
-
-if [ -e "/data/data/com.termux/files/usr/bin/apt-get" ];then
-    mkdir -p $PREFIX/var/tmp/nvim/backups $PREFIX/var/tmp/nvim/swaps/
-    echo "\" BACKUP" >> ~/.config/nvim/init.vim
-    echo "set writebackup" >> ~/.config/nvim/init.vim
-    echo "set backupdir=.,$PREFIX/var/tmp/nvim/backups" >> ~/.config/nvim/init.vim
-    echo "set dir=.,$PREFIX/var/tmp/nvim/swaps" >> ~/.config/nvim/init.vim
-else
-    mkdir -p ~/.local/share/nvim/backup ~/.local/share/nvim/swaps/
-    echo "\" BACKUP" >> ~/.config/nvim/init.vim
-    echo "set writebackup" >> ~/.config/nvim/init.vim
-    echo "set backupdir=.,~/.local/share/nvim/backup" >> ~/.config/nvim/init.vim
-    echo "set dir=.,~/.local/share/nvim/swaps" >> ~/.config/nvim/init.vim
-fi
-
-if [ "$extra" == "s" ];then
-    echo "Instalando dependências adicionais..."
-    npm i -g yarn
-    yarn global add vim-language-server
-fi
-
-echo "pronto! agora entre no NeoVim digitando 'nvim' e rode :PlugInstall (ou :PlugI, ele auto-completa pra gente :))"

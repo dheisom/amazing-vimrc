@@ -3,13 +3,14 @@
 Um pequeno conjunto de plugins e configurações para tornar o NeoVim mais
 bonito e rápido na hora de desenvolver seus códigos usando o terminal.
 
-<center>![Screenshoot](screenshoot.png)</center>
+![Screenshoot](screenshoot.png)
 
 Informações da captura de tela:
-    - Tema GTK/Konsole: [Dracula](https://github.com/dracula)
-    - Font: [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
-    - Sistema: Debian Bullseye
-    - DE: xfce
+
+  - Tema GTK/Konsole: [Dracula](https://github.com/dracula)
+  - Font: [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+  - Sistema: Debian Bullseye
+  - DE: xfce
 
 
 ## Instalação/Atualização

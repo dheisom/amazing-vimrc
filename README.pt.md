@@ -1,17 +1,9 @@
 # amazing-vimrc
 
 Um pequeno conjunto de plugins e configurações para tornar o NeoVim mais
-bonito e rápido na hora de desenvolver seus códigos usando o terminal.
+rápido e bonito na hora de desenvolver seus códigos usando o terminal.
 
-![Captura de tela](screenshot.png)
-
-Informações da captura de tela:
-
-  - Tema GTK/Konsole: [Dracula](https://github.com/dracula)
-  - Font: [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
-  - Sistema: Debian Bullseye
-  - DE: xfce
-
+![Captura de tela](https://imgur.com/xyZgGAT.png)
 
 ## Instalação/Atualização
 
@@ -26,14 +18,9 @@ Para atualizar os plugins é necessário rodar o comando :PlugUpdate no NeoVim
 
 ## Plugins do pacote
 
- - [Vim-NumberToggle](https://github.com/jeffkreeftmeijer/vim-numbertoggle)
- - [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
- - [AutoComplPop](https://github.com/vim-scripts/AutoComplPop)
- - [DelimitMate](https://github.com/Raimondi/delimitMate)
- - [CtrlP](https://github.com/ctrlpvim/ctrlp.vim)
- - [Ag](https://github.com/rking/ag.vim)
- - [Vim-Polyglot](https://github.com/sheerun/vim-polyglot)
- - [Vim-Airline](https://github.com/vim-airline/vim-airline)
- - [Purify](https://github.com/kyoz/purify)
- - [Async.vim](https://github.com/prabirshrestha/async.vim)
- - [Emmet-Vim](https://github.com/mattn/emmet-vim)
+ - [AutoComplPop](https://github.com/vim-scripts/AutoComplPop): Popup de auto complete;
+ - [DelimitMate](https://github.com/Raimondi/delimitMate): Fechamento de parênteses, aspas e outros;
+ - [Vim-Polyglot](https://github.com/sheerun/vim-polyglot): Suporte a mais linguagens de programação;
+ - [Async.vim](https://github.com/prabirshrestha/async.vim): Melhora no suporte de funcionamento assíncrono;
+ - [Aylin](https://github.com/AhmedAbdulrahman/vim-aylin): Tema escuro bonitinho;
+ - [LightLine.vim](https://github.com/itchyny/lightline.vim): Melhora na barra inferior de informações.

@@ -4,8 +4,8 @@
 " Base Author: Gabriel (@foxx3r)
 " Base Source: https://github.com/foxx3r/amazing-vimrc
 "
-" Fork: Dheisom (@dheisom)
-" Fork Source: https://github.com/dheisom/amazing-vimrc
+" Fork: Dheison (@dheison0)
+" Fork Source: https://github.com/dheison0/amazing-vimrc
 
 " LEADER KEY
 let mapleader=","
@@ -25,21 +25,14 @@ endif
 
 " Configure vim-plug
 call plug#begin('~/.vim/bundle')
-    Plug 'jeffkreeftmeijer/vim-numbertoggle'
-    Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-scripts/AutoComplPop'
     Plug 'Raimondi/delimitMate'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'rking/ag.vim'
     Plug 'sheerun/vim-polyglot'
-    Plug 'vim-airline/vim-airline'
-    Plug 'kyoz/purify', { 'rtp': 'vim' }
     Plug 'prabirshrestha/async.vim'
-    Plug 'mattn/emmet-vim'
+    Plug 'AhmedAbdulrahman/vim-aylin'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 
-" Emmet.vim is the same as VSCode (Visual Studio Code) it helps you
-"  write html codes faster
 
 " Enable syntax highlighting
 syntax on
@@ -50,16 +43,6 @@ set incsearch
 
 " Highlight search term. Use :nohl to redraw screen and disable highlight
 set hlsearch
-
-" vim-airline config
-let g:airline#entensions#tabline#enabled = 1
-let g:airline#entensions#tabline#left_sep = ' '
-let g:airline#entensions#tabline#left_alt_sep = '|'
-let g:airline#entensions#tabline#formatter = 'default'
-let g:airline_powerline_fonts = 1
-
-" Make Ag search from your project root
-let g:ag_working_path_mode="r"
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -84,10 +67,11 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set omnifunc=syntaxcomplete#Complete
 
 " COLOR SCHEME
-colorscheme purify
-
-" FONT
-set guifont=Monaco\ for\ Powerline:h12s
+set background=dark
+colorscheme aylin
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " ENCODING
 set encoding=utf-8
@@ -103,9 +87,8 @@ set wildmode=list:longest
 " Speedup
 set ttyfast
 
-" FILE NUMBERS
-" Enable relative and absolute file numbers
-set number relativenumber
+" Enable line number
+set number
 
 " WRAP
 " Stop wrapping long lines
@@ -116,13 +99,15 @@ set autoread
 
 " PLUGINS CONFIGURATIONS
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" LightLine
+let g:lightline = {
+      \ 'colorscheme': 'aylin',
+      \ }
 
+" Other configs
 set nocursorcolumn
-set nocursorline
+" set nocursorline
 set norelativenumber
 set lazyredraw
-set mouse=
 syntax sync minlines=256
+

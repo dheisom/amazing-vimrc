@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installation script of amazing-vimrc(Dheisom's version)
+# Installation script of amazing-vimrc(Dheison's version)
 
 declare -A DEPENDENCIES=()
 DEPENDENCIES['curl']="curl"
@@ -42,11 +42,14 @@ if [ -d "${HOME}/.config/nvim" ]; then
     git pull
 else
     log "INFO" "Installing for user $(whoami)..."
-    git clone --depth=1 https://github.com/dheisom/amazing-vimrc ~/.config/nvim
+    git clone \
+        --depth=1 \
+        --single-branch \
+        https://github.com/dheison0/amazing-vimrc \
+        ~/.config/nvim
     if [ $? != 0 ]; then
         log "ERROR" "Failed to clone GitHub repository, try again if you want this."
         exit 2
-    else
-        log "INFO" "Installed with success!"
     fi
+    log "INFO" "Installed with success!"
 fi
